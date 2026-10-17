@@ -1,0 +1,230 @@
+@import '@fontsource-variable/jetbrains-mono';
+@import '@fontsource-variable/geist';
+
+:root {
+  --surface-lowest: #0a0e18;
+  --surface-editor: #0f131d;
+  --surface-low: #171b26;
+  --surface: #1c1f2a;
+  --surface-high: #262a35;
+  --surface-highest: #313540;
+  --border: #262a35;
+  --border-faint: rgba(38, 42, 53, 0.4);
+  --outline: rgba(59, 73, 76, 0.4);
+  --outline-faint: rgba(59, 73, 76, 0.3);
+  --text: #dfe2f1;
+  --text-muted: #bac9cc;
+  --text-subtle: #849396;
+  --text-faint: rgba(132, 147, 150, 0.4);
+  --primary: #00e5ff;
+  --primary-strong: #00daf3;
+  --primary-text: #c3f5ff;
+  --primary-bg: rgba(0, 229, 255, 0.2);
+  --on-primary: #00626e;
+  --success: #4edea3;
+  --success-bg: rgba(0, 165, 114, 0.2);
+  --warning: #ffc681;
+  --warning-text: #ffb95f;
+  --warning-soft: #ffddb8;
+  --warning-bg: rgba(255, 198, 129, 0.1);
+  --on-warning: #7e4e00;
+  --error: #ffb4ab;
+  --error-bg: rgba(147, 0, 10, 0.4);
+  --font-mono:
+    'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: 'Geist Variable', system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  background: var(--surface-lowest);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+input,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+img {
+  display: block;
+  flex-shrink: 0;
+}
+
+:focus-visible {
+  outline: 1px solid var(--primary);
+  outline-offset: 1px;
+}
+
+::selection {
+  background: rgba(0, 229, 255, 0.25);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  background: var(--surface-high) padding-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.workspace {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: currentColor;
+}
+
+.dot--small {
+  width: 6px;
+  height: 6px;
+}
+
+.dot--pulse {
+  position: relative;
+}
+
+.dot--pulse::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  content: '';
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot--pulse::after {
+    animation: none;
+  }
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-warning {
+  color: var(--warning-text);
+}
+
+.text-error {
+  color: var(--error);
+}
+
+.text-subtle {
+  color: var(--text-subtle);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.strong {
+  font-weight: 600;
+}
+
+.field {
+  min-width: 0;
+  padding: 3px 9px;
+  border: 1px solid var(--outline-faint);
+  border-radius: 4px;
+  outline: none;
+  background: var(--surface-lowest);
+  color: var(--text);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.field:focus {
+  border-color: var(--primary);
+}
+
+.field[readonly] {
+  color: var(--text-muted);
+}
+
+.field[readonly]:focus {
+  border-color: var(--outline);
+}
+
+.tool-button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  padding: 7px 11px;
+  border: 1px solid var(--outline-faint);
+  border-radius: 4px;
+  background: var(--surface-low);
+  color: var(--text-muted);
+}
+
+.tool-button:not(:disabled):hover {
+  background: var(--surface);
+  color: var(--text);
+}
